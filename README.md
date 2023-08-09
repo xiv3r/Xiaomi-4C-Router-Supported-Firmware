@@ -1,35 +1,85 @@
 # Xiaomi-Router-4C-Firmwares
-All firmwares that support Xiaomi Router 4C
 
+Firmware Download:
+
+
+- Note: one mistake will bricked your router, do at your own risk!
+
+  Recovery: https://github.com/xiv3r/Xiaomi-Router-4C-CH341A-flasher 
+  
+# Docker Build
+
+    docker build -t openwrtinvasion https://github.com/acecilia/OpenWRTInvasion.git
+    docker run --network host -it openwrtinvasion
+
+
+- Note: Reset your router and configure connect the lan cable then proceed to the process
+ 
 
 # Process
 
-1. Unpack OpenWRTInvasion and go to its folder, where we execute the command to install the necessary modules (I didn’t install anything new on Linux):
+- Unpack OpenWRTInvasion and go to its folder, where we execute the command to install the necessary modules (I didn’t install anything new on Linux):
 
-       pip install -r requirements.txt
+      git clone https://github.com/acecilia/OpenWRTInvasion.git
 
-And let's start hacking:
+      cd OpenWRTInvasion
+
+      pip install -r requirements.txt
+
+- And let's start Exploiting:
         
-      python3 remote_command_execution_vulnerability.py
+      python remote_command_execution_vulnerability.py
 
-The script will ask for the ip of the router (192.168.31.1 - if you did not change the standard ip of the router to your own) and the current password, after which it will hack and upload the telnet server to the router.
-If the utility reported that everything is fine, go to
-the Firmware.
+- IP: 192.168.31.1 enter and type 1 enter
 
-Rename the firmware file shorter (less typing), in all instructions it is firmware.bin and upload the resulting file using FileZilla to the / tmp folder on the router.
 
-Connection parameters: ip 192.168.31.1 (if you did not change the standard ip of the router to your own) login: root password: root
-We connect to the router via telnet (putty now rules), the connection parameters are the same.
-In the terminal, execute 2 commands in sequence:
+- Connection for telnet
+  
+      telnet 192.168.31.1
+
+login: root password: root
+
+- After successful login
     
       cd /tmp
-     
-- to go to the folder with the firmware
 
-      mtd -e OS1 -r write firmware.bin OS1
+# Open new terminal
+
+     python -m http.server
+
+     ifconfig
+
+![Screenshot_20230809_190816](https://github.com/xiv3r/Xiaomi-Router-4C-Firmwares/assets/117867334/0455d982-643c-443d-b995-3c25fd956a4d)
+
+open chrome and type 192.168.1.211:8000 
+
+right click the file and copy link address
+
+![Screenshot_20230809_190932](https://github.com/xiv3r/Xiaomi-Router-4C-Firmwares/assets/117867334/9e490cf6-0626-47f0-b8e4-5cfc6493c559)
+
+- Go back to the previous terminal
+
+  cd /tmp
   
-- the firmware itself, the process will take a few minutes, after which the router will reboot itself.
-After the reboot, I turned off the power for a while and turned it on for a clean boot.
-If the previous steps could be performed via wifi, now only the wire, wifi is turned off by default, the router address has changed to 192.168.1.1, you can also use https://openwrt
-Next, go to the web interface without a password and make your settings. Setting up OpenWrt is not difficult and this is a separate issue.
-For fine-tuning wifi, especially in apartment buildings, I recommend the article: How to set up Wi-Fi correctly
+- now import the firmware file to the /tmp directory
+
+      cd /tmp
+  
+      wget http://192.168.1.211:8000/Downloads/padavanklhjzlfhkjhdfjjsfdzfhjdxf.trx -O padavan.bin
+ 
+- To flash the firmware
+
+      ls
+
+  for .bin
+  
+      mtd -e OS1 -r write padavan.bin OS1
+
+  for .trx
+
+      mtd -e OS1 -r write padavan.trx OS1
+  
+- The process will take a few minutes, after which the router will reboot itself. After the reboot, connect the lan and configure to your computer
+![Screenshot_20230809_191639](https://github.com/xiv3r/Xiaomi-Router-4C-Firmwares/assets/117867334/335052dd-a7c4-4cb3-a03f-59b397f9bdb5)
+
+
