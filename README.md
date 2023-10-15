@@ -1,16 +1,17 @@
-# Xiaomi-Router-4C-Firmwares
+# <h1 align="center"> Xiaomi Mi Router 4C Firmware </h1>
 
 [Firmware Download](https://github.com/xiv3r/Xiaomi-Router-4C-Firmwares/releases/tag/v1)
 
+`Note:` One mistake will bricked your router forever, do at your own risk!
 
-- Note: one mistake will bricked your router, do at your own risk!
-
-[Link to Recovery](https://github.com/xiv3r/Xiaomi-Router-4C-CH341A-flasher)
+[Link for Recovery](https://github.com/xiv3r/Xiaomi-Router-4C-CH341A-flasher)
   
+
 # Docker Build
 
-    docker build -t openwrtinvasion https://github.com/acecilia/OpenWRTInvasion.git
-    docker run --network host -it openwrtinvasion
+      docker build -t openwrtinvasion https://github.com/acecilia/OpenWRTInvasion.git
+   
+      docker run --network host -it openwrtinvasion
 
 
 - Note: Reset your router and configure connect the lan cable then proceed to the process
@@ -37,13 +38,13 @@
   
       telnet 192.168.31.1
 
-login: root password: root
+login: `root` password: `root`
 
 - After successful login
     
       cd /tmp
 
-# Open new terminal
+# Open a new terminal
 
      python -m http.server
 
