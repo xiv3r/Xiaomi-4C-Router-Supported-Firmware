@@ -1,4 +1,4 @@
-# <h1 align="center"> Xiaomi Mi Router 4C Firmware </h1>
+# <h1 align="center"> Supported Firmware For Xiaomi 4C Router </h1>
 
 [Firmware Download](https://github.com/xiv3r/Xiaomi-Router-4C-Firmwares/releases/tag/v1)
 
