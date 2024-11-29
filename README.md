@@ -67,6 +67,12 @@ login: `root` password: `root`
       cd /tmp
   
       wget http://192.168.1.211:8000/Downloads/padavanklhjzlfhkjhdfjjsfdzfhjdxf.trx -O padavan.bin
+
+- Another method is using scp
+
+      cd Download
+
+      scp padavan.bin root@192.168.31.1:/tmp
  
 - To flash the firmware
 
